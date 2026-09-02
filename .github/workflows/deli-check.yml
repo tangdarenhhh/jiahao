@@ -3,7 +3,7 @@ name: Deli E+ 自动打卡
 on:
   schedule:
     # 示例：中国时间工作日 08:20 签到
-    - cron: '00 9 * * *'
+    - cron: '0 9 * * *'
       timezone: 'Asia/Shanghai'
 
     # 示例：中国时间工作日 20:00 签退
@@ -76,9 +76,9 @@ jobs:
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             echo "DELI_MODE=${{ inputs.mode }}" >> "$GITHUB_ENV"
           # 如果是定时任务，判断当前时间是签到还是签退
-          elif [[ "${{ github.event.schedule }}" == "30 8 * * *" ]]; then
+          elif [[ "${{ github.event.schedule }}" == "0 9 * * *" ]]; then
             echo "DELI_MODE=checkin" >> "$GITHUB_ENV"
-          elif [[ "${{ github.event.schedule }}" == "0 20 * * *" ]]; then
+          elif [[ "${{ github.event.schedule }}" == "0 22 * * *" ]]; then
             echo "DELI_MODE=checkout" >> "$GITHUB_ENV"
           fi
 
